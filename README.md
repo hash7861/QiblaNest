@@ -1,6 +1,3 @@
-# QiblaNest
-An app that helps Muslims find homes near masjids using maps, sentiment analysis, and smart filtering
-
 # 🕌 QiblaNest
 
 **QiblaNest** is a location-based real estate app that helps Muslims find homes near masjids. It combines real estate listings with proximity data, Google Maps, and community sentiment analysis to guide families to spiritually and socially enriching neighborhoods.
