@@ -1,38 +1,50 @@
-# 🕌 QiblaNest
+# Welcome to your Expo app 👋
 
-**QiblaNest** is a location-based real estate app that helps Muslims find homes near masjids. It combines real estate listings with proximity data, Google Maps, and community sentiment analysis to guide families to spiritually and socially enriching neighborhoods.
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
----
+## Get started
 
-## 🌟 Features
+1. Install dependencies
 
-- 🔍 Search for homes by city or zip code
-- 🏠 View nearby masjids and walking distance from listings
-- 💬 Sentiment analysis of masjid reviews (via Google Maps/Yelp)
-- 📍 Map-based UI with filters for schools, halal food, and more
-- 💾 Save favorite homes and receive listing alerts
+   ```bash
+   npm install
+   ```
 
----
+2. Start the app
 
-## 🚧 MVP Tech Stack
+   ```bash
+   npx expo start
+   ```
 
-| Layer | Technology |
-|-------|------------|
-| Frontend (Mobile App) | Flutter / React Native |
-| Backend/API | Firebase / Supabase / Node.js |
-| Maps & Location | Google Maps SDK / Mapbox |
-| Data Sources | Zillow, Redfin (scraping or APIs), Google Places API |
-| Sentiment Analysis | Hugging Face Transformers / OpenAI API |
+In the output, you'll find options to open the app in a
 
----
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-## 📦 Setup Instructions (WIP)
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+
+## Get a fresh project
+
+When you're ready, run:
 
 ```bash
-# Clone the repo
-git clone https://github.com/your-username/QiblaNest.git
-cd QiblaNest
+npm run reset-project
+```
 
-# Install dependencies (depending on your stack)
-npm install
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
+## Learn more
+
+To learn more about developing your project with Expo, look at the following resources:
+
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+
+## Join the community
+
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
