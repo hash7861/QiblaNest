@@ -1,9 +1,22 @@
+import { GOOGLE_PLACES_API_KEY } from '@env';
 import * as Location from 'expo-location';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, StyleSheet, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
-const masjids = [
+// Confirm the API key is loading (can be removed later)
+console.log('Google Places API Key:', GOOGLE_PLACES_API_KEY);
+
+// Type for a masjid marker
+type Masjid = {
+  id: number;
+  name: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+};
+
+const masjids: Masjid[] = [
   {
     id: 1,
     name: 'Masjid Omar',
@@ -32,13 +45,13 @@ const MapScreen = () => {
 
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
+      const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         Alert.alert('Permission denied', 'Allow location access to use this feature');
         return;
       }
 
-      let userLocation = await Location.getCurrentPositionAsync({});
+      const userLocation = await Location.getCurrentPositionAsync({});
       setLocation(userLocation.coords);
     })();
   }, []);
