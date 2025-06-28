@@ -4,44 +4,18 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, StyleSheet, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
-// Confirm the API key is loading (can be removed later)
-console.log('Google Places API Key:', GOOGLE_PLACES_API_KEY);
-
 // Type for a masjid marker
 type Masjid = {
-  id: number;
+  id: string;
   name: string;
   description: string;
   latitude: number;
   longitude: number;
 };
 
-const masjids: Masjid[] = [
-  {
-    id: 1,
-    name: 'Masjid Omar',
-    description: 'Main masjid in downtown',
-    latitude: 39.9615,
-    longitude: -82.9990,
-  },
-  {
-    id: 2,
-    name: 'Masjid Bilal',
-    description: 'Known for youth programs',
-    latitude: 39.9622,
-    longitude: -82.9975,
-  },
-  {
-    id: 3,
-    name: 'Masjid Al-Noor',
-    description: 'Peaceful and community-driven',
-    latitude: 39.9600,
-    longitude: -82.9965,
-  },
-];
-
 const MapScreen = () => {
   const [location, setLocation] = useState<Location.LocationObjectCoords | null>(null);
+  const [masjids, setMasjids] = useState<Masjid[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -53,6 +27,31 @@ const MapScreen = () => {
 
       const userLocation = await Location.getCurrentPositionAsync({});
       setLocation(userLocation.coords);
+
+      try {
+        const { latitude, longitude } = userLocation.coords;
+        const radius = 3000; // meters
+        const type = 'mosque';
+        const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&type=${type}&key=${GOOGLE_PLACES_API_KEY}`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.results) {
+          const nearbyMasjids: Masjid[] = data.results.map((place: any) => ({
+            id: place.place_id,
+            name: place.name,
+            description: place.vicinity || '',
+            latitude: place.geometry.location.lat,
+            longitude: place.geometry.location.lng,
+          }));
+          setMasjids(nearbyMasjids);
+        } else {
+          console.warn('No masjids found nearby.');
+        }
+      } catch (error) {
+        console.error('Failed to fetch masjids:', error);
+      }
     })();
   }, []);
 
